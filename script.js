@@ -1,3 +1,4 @@
+// Base class set up
 class Fighter {
     constructor(profession ,health, attack, dexterity, wisdom, defense) {
         this.profession = profession
@@ -13,6 +14,7 @@ class Fighter {
     }
 }
 
+// Generated Classes
 const barbarian = new Fighter("Barbarian", 1, 1, 1, 1, 1)
 const swashbuckler = new Fighter("Swashbuckler", 1, 1, 1, 1, 1)
 const ranger = new Fighter("Ranger", 1, 1, 1, 1, 1)
@@ -22,3 +24,16 @@ const healer = new Fighter("Healer", 1, 1, 1, 1, 1)
 const monk = new Fighter("Monk", 1, 1, 1, 1, 1)
 const rogue = new Fighter("Rogue", 1, 1, 1, 1, 1)
 const knight = new Fighter("Knight", 1, 1, 1, 1, 1)
+
+console.log(barbarian)
+console.log(swashbuckler)
+console.log(ranger)
+console.log(assassin)
+console.log(wizard)
+console.log(healer)
+console.log(monk)
+console.log(ranger)
+console.log(knight)
+// Each side set with arrays
+const self = []
+const enemy = []
