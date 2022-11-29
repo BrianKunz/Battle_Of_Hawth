@@ -32,6 +32,9 @@ const knight = new Fighter("Knight", 1, 1, 1, 1, 1, "Sheild Bash", "Strike Down"
 const player1 = [barbarian, swashbuckler, ranger, assassin, wizard, healer, monk, rogue, knight]
 const player2 = [barbarian, swashbuckler, ranger, assassin, wizard, healer, monk, rogue, knight]
 
+const player1selected = []
+const player2selected = []
+
 // Easily access array items and distinguish between teams
 const p1bar = player1[0]
 const p1swa = player1[1]
