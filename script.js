@@ -25,15 +25,9 @@ const monk = new Fighter("Monk", 1, 1, 1, 1, 1)
 const rogue = new Fighter("Rogue", 1, 1, 1, 1, 1)
 const knight = new Fighter("Knight", 1, 1, 1, 1, 1)
 
-console.log(barbarian)
-console.log(swashbuckler)
-console.log(ranger)
-console.log(assassin)
-console.log(wizard)
-console.log(healer)
-console.log(monk)
-console.log(ranger)
-console.log(knight)
 // Each side set with arrays
-const self = []
-const enemy = []
+const player = [barbarian, swashbuckler, ranger, assassin, wizard, healer, monk, rogue, knight]
+const computer = [barbarian, swashbuckler, ranger, assassin, wizard, healer, monk, rogue, knight]
+
+console.log(player)
+console.log(computer)
