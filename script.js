@@ -130,8 +130,27 @@ const p2b4 = document.querySelector('#player2bench > .b4')
 const p2b5 = document.querySelector('#player2bench > .b5')
 const p2b6 = document.querySelector('#player2bench > .b6')
 
+
 //functions
 
 // function attack() {
 
 // }
+
+
+
+// Modal
+const modal = document.getElementById('myModal')
+const btn = document.getElementById('btn')
+const span = document.getElementsByClassName('close')[0]
+btn.onclick = function() {
+    modal.style.display = "block"
+}
+span.onclick = function() {
+    modal.style.display = "none"
+}
+window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none"
+    }
+}
