@@ -7,9 +7,9 @@ class Fighter {
         this.dexterity = dexterity
         this.wisdom = wisdom
         this.defense = defense
-        this.skill1 =skill1
-        this.skill2 =skill2
-        this.skill3 =skill3
+        this.skill1 = skill1
+        this.skill2 = skill2
+        this.skill3 = skill3
     }
     attackroll() {
         const roll = Math.floor(Math.random() * 6)
@@ -129,6 +129,18 @@ const p2b3 = document.querySelector('#player2bench > .b3')
 const p2b4 = document.querySelector('#player2bench > .b4')
 const p2b5 = document.querySelector('#player2bench > .b5')
 const p2b6 = document.querySelector('#player2bench > .b6')
+
+const p11i = document.querySelector('.p11 > img')
+const p12i = document.querySelector('.p12 > img')
+const p13i = document.querySelector('.p13 > img')
+
+const img = document.querySelectorAll("img")
+console.log(img)
+posit11.innerText = p1bar.profession
+
+img[0].src = "https://i.imgur.com/DRUAaya.png"
+img[0].style = "width:50px;height:50px"
+console.log(img[0])
 
 
 //functions
