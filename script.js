@@ -212,93 +212,94 @@ p21hs3.innerText = p2bar.skill3
 li10.addEventListener('click', () => {
     console.log("clicked")
     p1s.push(p1bar)
-    console.log(p1s)
+    delete player1[0]
 }, {once : true})
 li11.addEventListener('click', () => {
     console.log("clicked")
     p1s.push(p1swa)
-    console.log(p1s)
+    delete player1[1]
 }, {once : true})
 li12.addEventListener('click', () => {
     console.log("clicked")
     p1s.push(p1ran)
-    console.log(p1s)
+    delete player1[2]
 }, {once : true})
 li13.addEventListener('click', () => {
     console.log("clicked")
     p1s.push(p1ass)
-    console.log(p1s)
+    delete player1[3]
 }, {once : true})
 li14.addEventListener('click', () => {
     console.log("clicked")
     p1s.push(p1wiz)
-    console.log(p1s)
+    delete player1[4]
 }, {once : true})
 li15.addEventListener('click', () => {
     console.log("clicked")
     p1s.push(p1hea)
-    console.log(p1s)
+    delete player1[5]
 }, {once : true})
 li16.addEventListener('click', () => {
     console.log("clicked")
     p1s.push(p1mon)
-    console.log(p1s)
+    delete player1[6]
 }, {once : true})
 li17.addEventListener('click', () => {
     console.log("clicked")
     p1s.push(p1rog)
-    console.log(p1s)
+    delete player1[7]
 }, {once : true})
 li18.addEventListener('click', () => {
     console.log("clicked")
     p1s.push(p1kni)
-    console.log(p1s)
+    delete player1[8]
 }, {once : true})
 
 li20.addEventListener('click', () => {
     console.log("clicked")
     p2s.push(p2bar)
-    console.log(p2s)
+    delete player2[0]
 }, {once : true})
 li21.addEventListener('click', () => {
     console.log("clicked")
     p2s.push(p2swa)
-    console.log(p2s)
+    delete player2[1]
 }, {once : true})
 li22.addEventListener('click', () => {
     console.log("clicked")
     p2s.push(p2ran)
-    console.log(p2s)
+    delete player2[2]
 }, {once : true})
 li23.addEventListener('click', () => {
     console.log("clicked")
     p2s.push(p2ass)
-    console.log(p2s)
+    delete player2[3]
 }, {once : true})
 li24.addEventListener('click', () => {
     console.log("clicked")
     p2s.push(p2wiz)
-    console.log(p2s)
+    delete player2[4]
 }, {once : true})
 li25.addEventListener('click', () => {
     console.log("clicked")
     p2s.push(p2hea)
-    console.log(p2s)
+    delete player2[5]
 }, {once : true})
 li26.addEventListener('click', () => {
     console.log("clicked")
     p2s.push(p2mon)
-    console.log(p2s)
+    delete player2[6]
 }, {once : true})
 li27.addEventListener('click', () => {
     console.log("clicked")
     p2s.push(p2rog)
-    console.log(p2s)
+    delete player2[7]
 }, {once : true})
 li28.addEventListener('click', () => {
     console.log("clicked")
     p2s.push(p2kni)
-    console.log(p2s)
+    delete player2[8]
+    console.log(player2)
 }, {once : true})
 
 // Modal
