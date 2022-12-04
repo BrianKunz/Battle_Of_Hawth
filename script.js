@@ -12,7 +12,7 @@ class Fighter {
         this.skill3 = skill3
         this.img = img
     }
-    strengthroll() {
+    hitroll() {
         const roll = Math.floor(Math.random() * 6)
         return roll
     }
@@ -22,7 +22,7 @@ class Fighter {
 const barbarian = new Fighter("Barbarian", 15, 8, 5, 2, 7, "SWING MORE","RAGE ON","CLEAVE", "https://i.imgur.com/DRUAaya.png")
 const swashbuckler = new Fighter("Swashbuckler", 12, 5, 6, 1, 9, "STAB", "SLICE", "WEAK SPOT", "https://i.imgur.com/VdFaN2C.png")
 const ranger = new Fighter("Ranger", 12, 3, 9, 1, 3, "DOUBE SHOT", "SPLIT TARGET", "PRECISE SHOT", "https://i.imgur.com/aKAkHel.png")
-const assassin = new Fighter("Assassin", 10, 2, 11, 1, 5, "BACKSTAB", "THROWING KNIVES", "DEADLY STRIKE", "https://i.imgur.com/Of4M4A0.png")
+const assassin = new Fighter("Assassin", 10, 2, 10, 1, 5, "BACKSTAB", "THROWING KNIVES", "DEADLY STRIKE", "https://i.imgur.com/Of4M4A0.png")
 const wizard = new Fighter("Wizard", 8, 1, 3, 1, 2, "FIREBALL", "SHOCK", "HAIL", "https://i.imgur.com/AWH3C1X.png")
 const healer = new Fighter("Healer", 10, 1, 4, 1, 3, "HEAL", "BOOST", "SMITE", "https://i.imgur.com/4XxzquY.png")
 const monk = new Fighter("Monk", 12, 7, 7, 1, 8, "PRECISE strength", "FLYING KICK", "TRIPLE UNARMED STRIKE", "https://i.imgur.com/5twXEfM.png")
@@ -374,12 +374,6 @@ round.addEventListener('click', () => {
         return element !== '';
     });
 
-    console.log(nplayer1)
-    console.log(nplayer1[0].img)
-    console.log(nplayer2)
-    console.log(nplayer2[0].img)
-
-
     p1b1.src = nplayer1[0].img
     p1b2.src = nplayer1[1].img
     p1b3.src = nplayer1[2].img
@@ -394,7 +388,6 @@ round.addEventListener('click', () => {
     p2b5.src = nplayer2[4].img
     p2b6.src = nplayer2[5].img
 
-    console.log(p1b1.src)
 })
 
 // Modal
