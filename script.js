@@ -36,6 +36,9 @@ const player2 = [barbarian, swashbuckler, ranger, assassin, wizard, healer, monk
 const p1s = []
 const p2s = []
 
+let nplayer1 = []
+let nplayer2 = []
+
 // Easily access array items and distinguish between teams
 const p1bar = player1[0]
 const p1swa = player1[1]
@@ -123,19 +126,19 @@ const p23hs2 = document.querySelector('.p23 > .skill2')
 const p23hs3 = document.querySelector('.p23 > .skill3')
 const p23i = document.querySelector('.p23 > img')
 
-const p1b1 = document.querySelector('#player1bench > .b1')
-const p1b2 = document.querySelector('#player1bench > .b2')
-const p1b3 = document.querySelector('#player1bench > .b3')
-const p1b4 = document.querySelector('#player1bench > .b4')
-const p1b5 = document.querySelector('#player1bench > .b5')
-const p1b6 = document.querySelector('#player1bench > .b6')
+const p1b1 = document.querySelector('.b11 > img')
+const p1b2 = document.querySelector('.b12 > img')
+const p1b3 = document.querySelector('.b13 > img')
+const p1b4 = document.querySelector('.b14 > img')
+const p1b5 = document.querySelector('.b15 > img')
+const p1b6 = document.querySelector('.b16 > img')
 
-const p2b1 = document.querySelector('#player2bench > .b1')
-const p2b2 = document.querySelector('#player2bench > .b2')
-const p2b3 = document.querySelector('#player2bench > .b3')
-const p2b4 = document.querySelector('#player2bench > .b4')
-const p2b5 = document.querySelector('#player2bench > .b5')
-const p2b6 = document.querySelector('#player2bench > .b6')
+const p2b1 = document.querySelector('.b21 > img')
+const p2b2 = document.querySelector('.b22 > img')
+const p2b3 = document.querySelector('.b23 > img')
+const p2b4 = document.querySelector('.b24 > img')
+const p2b5 = document.querySelector('.b25 > img')
+const p2b6 = document.querySelector('.b26 > img')
 
 const li10 = document.querySelector('.p1list > .l0 > img')
 const li11 = document.querySelector('.p1list > .l1 > img')
@@ -157,6 +160,11 @@ const li26 = document.querySelector('.p2list > .l6 > img')
 const li27 = document.querySelector('.p2list > .l7 > img')
 const li28 = document.querySelector('.p2list > .l8 > img')
 
+const round = document.querySelector('.round')
+
+
+//Images for each list
+
 li10.src = p1bar.img
 li11.src = p1swa.img
 li12.src = p1ran.img
@@ -177,27 +185,6 @@ li26.src = p2mon.img
 li27.src = p2rog.img
 li28.src = p2kni.img
 
-posit11.innerText = p1bar.profession
-p11h.innerText = p1bar.health
-p11a.innerText = p1bar.strength
-p11d.innerText = p1bar.dexterity
-p11w.innerText = p1bar.wisdom
-p11def.innerText = p1bar.defense
-p11i.src = p1bar.img
-p11hs1.innerText = p1bar.skill1
-p11hs2.innerText = p1bar.skill2
-p11hs3.innerText = p1bar.skill3
-
-posit21.innerText = p2bar.profession
-p21h.innerText = p2bar.health
-p21a.innerText = p2bar.strength
-p21d.innerText = p2bar.dexterity
-p21w.innerText = p2bar.wisdom
-p21def.innerText = p2bar.defense
-p21i.src = p2bar.img
-p21hs1.innerText = p2bar.skill1
-p21hs2.innerText = p2bar.skill2
-p21hs3.innerText = p2bar.skill3
 
 
 
@@ -210,7 +197,10 @@ function fullteam() {
         document.querySelector('.p1list').style.display = "none";
     }
     if (p2s.length === 3) {
-        document.querySelector('.p2list').style.display = "none";
+        document.querySelector('.p2list').style.display = "none"
+    }
+    if (p1s.length === 3 && p2s.length === 3) {
+        document.querySelector('.close').style.display = "none"
     }
 }
 
@@ -308,7 +298,104 @@ li28.addEventListener('click', () => {
     fullteam()
 }, {once : true})
 
-//Create function to check if 3 fighters selected, if so disabled adding any more players.
+round.addEventListener('click', () => {
+    modal.style.display = "none"
+    posit11.innerText = p1s[0].profession
+    p11h.innerText = p1s[0].health
+    p11a.innerText = p1s[0].strength
+    p11d.innerText = p1s[0].dexterity
+    p11w.innerText = p1s[0].wisdom
+    p11def.innerText = p1s[0].defense
+    p11hs1.innerText = p1s[0].skill1    
+    p11hs2.innerText = p1s[0].skill2    
+    p11hs3.innerText = p1s[0].skill3
+    p11i.src = p1s[0].img    
+
+    posit12.innerText = p1s[1].profession
+    p12h.innerText = p1s[1].health
+    p12a.innerText = p1s[1].strength
+    p12d.innerText = p1s[1].dexterity
+    p12w.innerText = p1s[1].wisdom
+    p12def.innerText = p1s[1].defense
+    p12hs1.innerText = p1s[1].skill1    
+    p12hs2.innerText = p1s[1].skill2    
+    p12hs3.innerText = p1s[1].skill3
+    p12i.src = p1s[1].img    
+
+    posit13.innerText = p1s[2].profession
+    p13h.innerText = p1s[2].health
+    p13a.innerText = p1s[2].strength
+    p13d.innerText = p1s[2].dexterity
+    p13w.innerText = p1s[2].wisdom
+    p13def.innerText = p1s[2].defense
+    p13hs1.innerText = p1s[2].skill1    
+    p13hs2.innerText = p1s[2].skill2    
+    p13hs3.innerText = p1s[2].skill3
+    p13i.src = p1s[2].img    
+
+    posit21.innerText = p2s[0].profession
+    p21h.innerText = p2s[0].health
+    p21a.innerText = p2s[0].strength
+    p21d.innerText = p2s[0].dexterity
+    p21w.innerText = p2s[0].wisdom
+    p21def.innerText = p2s[0].defense
+    p21hs1.innerText = p2s[0].skill1    
+    p21hs2.innerText = p2s[0].skill2    
+    p21hs3.innerText = p2s[0].skill3
+    p21i.src = p2s[0].img    
+
+    posit22.innerText = p2s[1].profession
+    p22h.innerText = p2s[1].health
+    p22a.innerText = p2s[1].strength
+    p22d.innerText = p2s[1].dexterity
+    p22w.innerText = p2s[1].wisdom
+    p22def.innerText = p2s[1].defense
+    p22hs1.innerText = p2s[1].skill1    
+    p22hs2.innerText = p2s[1].skill2    
+    p22hs3.innerText = p2s[1].skill3
+    p22i.src = p2s[1].img    
+
+    posit23.innerText = p2s[2].profession
+    p23h.innerText = p2s[2].health
+    p23a.innerText = p2s[2].strength
+    p23d.innerText = p2s[2].dexterity
+    p23w.innerText = p2s[2].wisdom
+    p23def.innerText = p2s[2].defense
+    p23hs1.innerText = p2s[2].skill1    
+    p23hs2.innerText = p2s[2].skill2    
+    p23hs3.innerText = p2s[2].skill3
+    p23i.src = p2s[2].img    
+
+    const nplayer1 = player1.filter(element => {
+        return element !== '';
+    });
+
+    const nplayer2 = player2.filter(element => {
+        return element !== '';
+    });
+
+    console.log(nplayer1)
+    console.log(nplayer1[0].img)
+    console.log(nplayer2)
+    console.log(nplayer2[0].img)
+
+
+    p1b1.src = nplayer1[0].img
+    p1b2.src = nplayer1[1].img
+    p1b3.src = nplayer1[2].img
+    p1b4.src = nplayer1[3].img
+    p1b5.src = nplayer1[4].img
+    p1b6.src = nplayer1[5].img
+
+    p2b1.src = nplayer2[0].img
+    p2b2.src = nplayer2[1].img
+    p2b3.src = nplayer2[2].img
+    p2b4.src = nplayer2[3].img
+    p2b5.src = nplayer2[4].img
+    p2b6.src = nplayer2[5].img
+
+    console.log(p1b1.src)
+})
 
 // Modal
 const modal = document.getElementById('myModal')
