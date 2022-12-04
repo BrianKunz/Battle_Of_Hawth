@@ -33,7 +33,7 @@ const knight = new Fighter("Knight", 30, 3, 3, 1, 13, "SHEILD BASH", "STRIKE DOW
 const player1 = [barbarian, swashbuckler, ranger, assassin, wizard, healer, monk, rogue, knight]
 const player2 = [barbarian, swashbuckler, ranger, assassin, wizard, healer, monk, rogue, knight]
 
-const p1s= []
+const p1s = []
 const p2s = []
 
 // Easily access array items and distinguish between teams
@@ -205,102 +205,110 @@ p21hs3.innerText = p2bar.skill3
 
 
 //functions
-
+function fullteam() {
+    if (p1s.length === 3) {
+        document.querySelector('.p1list').style.display = "none";
+    }
+    if (p2s.length === 3) {
+        document.querySelector('.p2list').style.display = "none";
+    }
+}
 
 //Event Listener
 
 li10.addEventListener('click', () => {
-    console.log("clicked")
     p1s.push(p1bar)
     delete player1[0]
+    fullteam()
 }, {once : true})
 li11.addEventListener('click', () => {
-    console.log("clicked")
     p1s.push(p1swa)
     delete player1[1]
+    fullteam()
 }, {once : true})
 li12.addEventListener('click', () => {
-    console.log("clicked")
     p1s.push(p1ran)
     delete player1[2]
+    fullteam()
 }, {once : true})
 li13.addEventListener('click', () => {
-    console.log("clicked")
     p1s.push(p1ass)
     delete player1[3]
+    fullteam()
 }, {once : true})
 li14.addEventListener('click', () => {
-    console.log("clicked")
     p1s.push(p1wiz)
     delete player1[4]
+    fullteam()
 }, {once : true})
 li15.addEventListener('click', () => {
-    console.log("clicked")
     p1s.push(p1hea)
     delete player1[5]
+    fullteam()
 }, {once : true})
 li16.addEventListener('click', () => {
-    console.log("clicked")
     p1s.push(p1mon)
     delete player1[6]
+    fullteam()
 }, {once : true})
 li17.addEventListener('click', () => {
-    console.log("clicked")
     p1s.push(p1rog)
     delete player1[7]
+    fullteam()
 }, {once : true})
 li18.addEventListener('click', () => {
-    console.log("clicked")
     p1s.push(p1kni)
     delete player1[8]
+    fullteam()
 }, {once : true})
 
 li20.addEventListener('click', () => {
-    console.log("clicked")
     p2s.push(p2bar)
     delete player2[0]
+    fullteam()
 }, {once : true})
 li21.addEventListener('click', () => {
-    console.log("clicked")
     p2s.push(p2swa)
     delete player2[1]
+    fullteam()
 }, {once : true})
 li22.addEventListener('click', () => {
-    console.log("clicked")
     p2s.push(p2ran)
     delete player2[2]
+    fullteam()
 }, {once : true})
 li23.addEventListener('click', () => {
-    console.log("clicked")
     p2s.push(p2ass)
     delete player2[3]
+    fullteam()
 }, {once : true})
 li24.addEventListener('click', () => {
-    console.log("clicked")
     p2s.push(p2wiz)
     delete player2[4]
+    fullteam()
 }, {once : true})
 li25.addEventListener('click', () => {
-    console.log("clicked")
     p2s.push(p2hea)
     delete player2[5]
+    fullteam()
 }, {once : true})
 li26.addEventListener('click', () => {
-    console.log("clicked")
     p2s.push(p2mon)
     delete player2[6]
+    fullteam()
 }, {once : true})
 li27.addEventListener('click', () => {
-    console.log("clicked")
     p2s.push(p2rog)
     delete player2[7]
+    fullteam()
 }, {once : true})
 li28.addEventListener('click', () => {
-    console.log("clicked")
     p2s.push(p2kni)
     delete player2[8]
-    console.log(player2)
+    fullteam()
 }, {once : true})
+
+//Create function to check if 3 fighters selected, if so disabled adding any more players.
 
 // Modal
 const modal = document.getElementById('myModal')
