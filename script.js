@@ -25,7 +25,7 @@ const ranger = new Fighter("Ranger", 12, 3, 9, 1, 3, "DOUBE SHOT", "SPLIT TARGET
 const assassin = new Fighter("Assassin", 10, 2, 10, 1, 5, "BACKSTAB", "THROWING KNIVES", "DEADLY STRIKE", "https://i.imgur.com/Of4M4A0.png")
 const wizard = new Fighter("Wizard", 8, 1, 3, 1, 2, "FIREBALL", "SHOCK", "HAIL", "https://i.imgur.com/AWH3C1X.png")
 const healer = new Fighter("Healer", 10, 1, 4, 1, 3, "HEAL", "BOOST", "SMITE", "https://i.imgur.com/4XxzquY.png")
-const monk = new Fighter("Monk", 12, 7, 7, 1, 8, "PRECISE strength", "FLYING KICK", "TRIPLE UNARMED STRIKE", "https://i.imgur.com/5twXEfM.png")
+const monk = new Fighter("Monk", 12, 7, 7, 1, 8, "PRECISE STRIKE", "FLYING KICK", "TRIPLE UNARMED STRIKE", "https://i.imgur.com/5twXEfM.png")
 const rogue = new Fighter("Rogue", 10, 4, 9, 1, 6, "SLEIGHT OF HAND", "TRAINED EYE", "STROKE OF LUCK", "https://i.imgur.com/04Jy4eo.png")
 const knight = new Fighter("Knight", 30, 3, 3, 1, 13, "SHEILD BASH", "STRIKE DOWN", "INTIMIDATE", "https://i.imgur.com/vVPsT2g.png")
 
@@ -162,6 +162,12 @@ const li28 = document.querySelector('.p2list > .l8 > img')
 
 const round = document.querySelector('.round')
 
+const ap11 = document.querySelector('.p11 > .attack')
+const ap12 = document.querySelector('.p12 > .attack')
+const ap13 = document.querySelector('.p13 > .attack')
+const ap21 = document.querySelector('.p21 > .attack')
+const ap22 = document.querySelector('.p22 > .attack')
+const ap23 = document.querySelector('.p23 > .attack')
 
 //Images for each list
 
@@ -185,9 +191,33 @@ li26.src = p2mon.img
 li27.src = p2rog.img
 li28.src = p2kni.img
 
+//Hide skill buttons until fighter turn
+p11hs1.style.display = "none"
+p11hs2.style.display = "none"
+p11hs3.style.display = "none"
+p12hs1.style.display = "none"
+p12hs2.style.display = "none"
+p12hs3.style.display = "none"
+p13hs1.style.display = "none"
+p13hs2.style.display = "none"
+p13hs3.style.display = "none"
 
+p21hs1.style.display = "none"
+p21hs2.style.display = "none"
+p21hs3.style.display = "none"
+p22hs1.style.display = "none"
+p22hs2.style.display = "none"
+p22hs3.style.display = "none"
+p23hs1.style.display = "none"
+p23hs2.style.display = "none"
+p23hs3.style.display = "none"
 
-
+ap11.style.display = "none"
+ap12.style.display = "none"
+ap13.style.display = "none"
+ap21.style.display = "none"
+ap22.style.display = "none"
+ap23.style.display = "none"
 
 
 
@@ -203,6 +233,73 @@ function fullteam() {
         document.querySelector('.close').style.display = "none"
     }
 }
+
+function showp1skills() {
+    p11hs1.style.display = "block"
+    p11hs2.style.display = "block"
+    p11hs3.style.display = "block"
+    p12hs1.style.display = "block"
+    p12hs2.style.display = "block"
+    p12hs3.style.display = "block"
+    p13hs1.style.display = "block"
+    p13hs2.style.display = "block"
+    p13hs3.style.display = "block"
+}
+
+function showp2skills() {
+    p21hs1.style.display = "block"
+    p21hs2.style.display = "block"
+    p21hs3.style.display = "block"
+    p22hs1.style.display = "block"
+    p22hs2.style.display = "block"
+    p22hs3.style.display = "block"
+    p23hs1.style.display = "block"
+    p23hs2.style.display = "block"
+    p23hs3.style.display = "block"
+}
+
+function hidep1attack() {
+    ap11.style.display = "none"
+    ap12.style.display = "none"
+    ap13.style.display = "none"
+}
+
+function hidep2attack() {
+    ap21.style.display = "none"
+    ap22.style.display = "none"
+    ap23.style.display = "none"
+}
+
+
+//skills functions
+function swingMore() {}
+function rageOn() {}
+function cleave() {}
+function stab() {}
+function slice() {}
+function weakSpot() {}
+function doubleShot() {}
+function splitTarget() {}
+function preciseShot() {}
+function backstab() {}
+function throwingKnives() {}
+function deadlyStrike() {}
+function fireball() {}
+function shock() {}
+function hail() {}
+function heal() {}
+function boost() {}
+function smite() {}
+function preciseStrike() {}
+function flyingKick() {}
+function tripleUnarmedStrike() {}
+function sleightOfHand() {}
+function trainedEye() {}
+function strokeOfLuck() {}
+function sheildBash() {}
+function strikeDown() {}
+function intimidate() {}
+
 
 //Event Listener
 
@@ -388,6 +485,34 @@ round.addEventListener('click', () => {
     p2b5.src = nplayer2[4].img
     p2b6.src = nplayer2[5].img
 
+    ap21.style.display = "block"
+    ap22.style.display = "block"
+    ap23.style.display = "block"
+})
+
+ap21.addEventListener('click', () => {
+    hidep2attack()
+    showp1skills()
+})
+ap22.addEventListener('click', () => {
+    hidep2attack()
+    showp1skills()
+})
+ap23.addEventListener('click', () => {
+    hidep2attack()
+    showp1skills()
+})
+ap11.addEventListener('click', () => {
+    hidep1attack()
+    showp2skills()
+})
+ap12.addEventListener('click', () => {
+    hidep1attack()
+    showp2skills()
+})
+ap13.addEventListener('click', () => {
+    hidep1attack()
+    showp2skills()
 })
 
 // Modal
