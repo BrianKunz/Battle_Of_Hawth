@@ -21,17 +21,17 @@ class Fighter {
 // Generated Classes
 const barbarian = new Fighter("Barbarian", 15, 8, 5, 2, 7, "SWING MORE","RAGE ON","CLEAVE", "https://i.imgur.com/DRUAaya.png")
 const swashbuckler = new Fighter("Swashbuckler", 12, 5, 6, 1, 9, "STAB", "SLICE", "WEAK SPOT", "https://i.imgur.com/VdFaN2C.png")
-const ranger = new Fighter("Ranger", 12, 3, 9, 1, 3, "DOUBE SHOT", "SPLIT TARGET", "PRECISE SHOT", "https://i.imgur.com/aKAkHel.png")
+const ranger = new Fighter("Ranger", 12, 3, 9, 1, 3, "DOUBE SHOT", "POWER SHOT", "PRECISE SHOT", "https://i.imgur.com/aKAkHel.png")
 const assassin = new Fighter("Assassin", 10, 2, 10, 1, 5, "BACKSTAB", "THROWING KNIVES", "DEADLY STRIKE", "https://i.imgur.com/Of4M4A0.png")
 const wizard = new Fighter("Wizard", 8, 1, 3, 1, 2, "FIREBALL", "SHOCK", "HAIL", "https://i.imgur.com/AWH3C1X.png")
-const healer = new Fighter("Healer", 10, 1, 4, 1, 3, "HEAL", "BOOST", "SMITE", "https://i.imgur.com/4XxzquY.png")
+const dragonborn = new Fighter("Dragonborn", 10, 1, 4, 1, 3, "HEAL", "BOOST", "SMITE", "https://i.imgur.com/iGmh0ja.png")
 const monk = new Fighter("Monk", 12, 7, 7, 1, 8, "PRECISE STRIKE", "FLYING KICK", "TRIPLE UNARMED STRIKE", "https://i.imgur.com/5twXEfM.png")
 const rogue = new Fighter("Rogue", 10, 4, 9, 1, 6, "SLEIGHT OF HAND", "TRAINED EYE", "STROKE OF LUCK", "https://i.imgur.com/04Jy4eo.png")
 const knight = new Fighter("Knight", 30, 3, 3, 1, 13, "SHEILD BASH", "STRIKE DOWN", "INTIMIDATE", "https://i.imgur.com/vVPsT2g.png")
 
 // Each side set with arrays
-const player1 = [barbarian, swashbuckler, ranger, assassin, wizard, healer, monk, rogue, knight]
-const player2 = [barbarian, swashbuckler, ranger, assassin, wizard, healer, monk, rogue, knight]
+const player1 = [barbarian, swashbuckler, ranger, assassin, wizard, dragonborn, monk, rogue, knight]
+const player2 = [barbarian, swashbuckler, ranger, assassin, wizard, dragonborn, monk, rogue, knight]
 
 const p1s = []
 const p2s = []
@@ -169,6 +169,8 @@ const ap21 = document.querySelector('.p21 > .attack')
 const ap22 = document.querySelector('.p22 > .attack')
 const ap23 = document.querySelector('.p23 > .attack')
 
+const act = document.querySelector('.active')
+
 //Images for each list
 
 li10.src = p1bar.img
@@ -270,36 +272,530 @@ function hidep2attack() {
     ap23.style.display = "none"
 }
 
+function checkWinner() {
+    if (p1s[0].health <= 0 && p1s[1].health <= 0 && p1s[2].health <= 0) {
+        //add to p2 win total
+    } else if (p2s[0].health <= 0 && p2s[1].health <= 0 && p2s[2].health <= 0) {
+        //add to p1 win total
+    }
+}
+
+function updateHealth() {
+    if(act === p1s[0]) {
+        p11h.innerText = p1s[0].health
+    }else if(act === p1s[1]) {
+        p12h.innerText = p1s[1].health
+    }else if(act === p1s[2]) {
+        p13h.innerText = p1s[2].health
+    }else if(act === p2s[0]) {
+        p21h.innerText = p2s[0].health
+    }else if(act === p2s[1]) {
+        p22h.innerText = p2s[1].health
+    }else if(act === p2s[2]) {
+        p23h.innerText = p2s[2].health
+    }
+}
 
 //skills functions
-function swingMore() {}
-function rageOn() {}
-function cleave() {}
-function stab() {}
-function slice() {}
-function weakSpot() {}
-function doubleShot() {}
-function splitTarget() {}
-function preciseShot() {}
-function backstab() {}
-function throwingKnives() {}
-function deadlyStrike() {}
-function fireball() {}
-function shock() {}
-function hail() {}
-function heal() {}
-function boost() {}
-function smite() {}
-function preciseStrike() {}
-function flyingKick() {}
-function tripleUnarmedStrike() {}
-function sleightOfHand() {}
-function trainedEye() {}
-function strokeOfLuck() {}
-function sheildBash() {}
-function strikeDown() {}
-function intimidate() {}
+function swingMore() {
+    if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    console.log("check 1")
+    updateHealth()
+    
+}
+function rageOn() {
+    if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function cleave() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function stab() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function slice() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function weakSpot() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function doubleShot() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function powerShot() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function preciseShot() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function backstab() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function throwingKnives() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function deadlyStrike() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function fireball() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function shock() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function hail() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function heal() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function boost() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function smite() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function preciseStrike() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function flyingKick() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function tripleUnarmedStrike() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function sleightOfHand() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function trainedEye() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function strokeOfLuck() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function sheildBash() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function strikeDown() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
+function intimidate() {
+      if(act === p1s[0]) {
+        p11h.health -= 1
+    }else if(act === p1s[1]) {
+        p12h.health -= 1
+    }else if(act === p1s[2]) {
+        p13h.health -= 1
+    }else if(act === p2s[0]) {
+        p21h.health -= 1
+    }else if(act === p2s[1]) {
+        p22h.health -= 1
+    }else if(act === p2s[2]) {
+        p23h.health -= 1
+    }
+    updateHealth()
+}
 
+function skill1() {
+    if(p1s[0] === barbarian) {
+        swingMore()
+        console.log("check")
+    }else if(p1s[0] === swashbuckler) {
+        stab()
+    }else if(p1s[0] === ranger) {
+        doubleShot()
+    }else if(p1s[0] === assassin) {
+        backstab()
+    }else if(p1s[0] === window) {
+        fireball()
+    }else if(p1s[0] === dragonborn) {
+        heal()
+    }else if(p1s[0] === monk) {
+        preciseStrike()
+    }else if(p1s[0] === rogue) {
+        sleightOfHand()
+    }else if(p1s[0] === knight) {
+        sheildBash()
+    }
+}
+function skill2() {
+    if(p1s[0] === barbarian) {
+        rageOn()
+    }else if(p1s[0] === swashbuckler) {
+        slice()
+    }else if(p1s[0] === ranger) {
+        powerShot()
+    }else if(p1s[0] === assassin) {
+        throwingKnives()
+    }else if(p1s[0] === window) {
+        shock()
+    }else if(p1s[0] === dragonborn) {
+        boost()
+    }else if(p1s[0] === monk) {
+        flyingKick()
+    }else if(p1s[0] === rogue) {
+        trainedEye()
+    }else if(p1s[0] === knight) {
+        strikeDown()
+    }
+}
+function skill3() {
+    if(p1s[0] === barbarian) {
+        cleave()
+    }else if(p1s[0] === swashbuckler) {
+        weakSpot()
+    }else if(p1s[0] === ranger) {
+        preciseShot()
+    }else if(p1s[0] === assassin) {
+        deadlyStrike()
+    }else if(p1s[0] === window) {
+        hail()
+    }else if(p1s[0] === dragonborn) {
+        smite()
+    }else if(p1s[0] === monk) {
+        tripleUnarmedStrike()
+    }else if(p1s[0] === rogue) {
+        strokeOfLuck()
+    }else if(p1s[0] === knight) {
+        intimidate()
+    }
+}
 
 //Event Listener
 
@@ -493,26 +989,42 @@ round.addEventListener('click', () => {
 ap21.addEventListener('click', () => {
     hidep2attack()
     showp1skills()
+    ap21.classList.add('active')
 })
 ap22.addEventListener('click', () => {
     hidep2attack()
     showp1skills()
+    ap22.classList.add('active')
 })
 ap23.addEventListener('click', () => {
     hidep2attack()
     showp1skills()
+    ap23.classList.add('active')
 })
 ap11.addEventListener('click', () => {
     hidep1attack()
     showp2skills()
+    ap11.classList.add('active')
 })
 ap12.addEventListener('click', () => {
     hidep1attack()
     showp2skills()
+    ap12.classList.add('active')
 })
 ap13.addEventListener('click', () => {
     hidep1attack()
     showp2skills()
+    ap13.classList.add('active')
+})
+
+p11hs1.addEventListener('click', () => {
+    skill1()
+})
+p11hs2.addEventListener('click', () => {
+    skill2()
+})
+p11hs3.addEventListener('click', () => {
+    skill3()
 })
 
 
