@@ -60,6 +60,7 @@ const p2mon = player2[6]
 const p2rog = player2[7]
 const p2kni = player2[8]
 
+const f11 = document.querySelector('.p11')
 const posit11 = document.querySelector('.p11 > .profession')
 const p11h = document.querySelector('.p11 > .health > span')
 const p11a = document.querySelector('.p11 > .strength > span')
@@ -71,6 +72,7 @@ const p11hs2 = document.querySelector('.p11 > .skill2')
 const p11hs3 = document.querySelector('.p11 > .skill3')
 const p11i = document.querySelector('.p11 > img')
 
+const f12 = document.querySelector('.p12')
 const posit12 = document.querySelector('.p12 > .profession')
 const p12h = document.querySelector('.p12 > .health > span')
 const p12a = document.querySelector('.p12 > .strength > span')
@@ -82,6 +84,7 @@ const p12hs2 = document.querySelector('.p12 > .skill2')
 const p12hs3 = document.querySelector('.p12 > .skill3')
 const p12i = document.querySelector('.p12 > img')
 
+const f13 = document.querySelector('.p13')
 const posit13 = document.querySelector('.p13 > .profession')
 const p13h = document.querySelector('.p13 > .health > span')
 const p13a = document.querySelector('.p13 > .strength > span')
@@ -93,6 +96,7 @@ const p13hs2 = document.querySelector('.p13 > .skill2')
 const p13hs3 = document.querySelector('.p13 > .skill3')
 const p13i = document.querySelector('.p13 > img')
 
+const f21 = document.querySelector('.p21')
 const posit21 = document.querySelector('.p21 > .profession')
 const p21h = document.querySelector('.p21 > .health > span')
 const p21a = document.querySelector('.p21 > .strength > span')
@@ -104,6 +108,7 @@ const p21hs2 = document.querySelector('.p21 > .skill2')
 const p21hs3 = document.querySelector('.p21 > .skill3')
 const p21i = document.querySelector('.p21 > img')
 
+const f22 = document.querySelector('.p22')
 const posit22 = document.querySelector('.p22 > .profession')
 const p22h = document.querySelector('.p22 > .health > span')
 const p22a = document.querySelector('.p22 > .strength > span')
@@ -115,6 +120,7 @@ const p22hs2 = document.querySelector('.p22 > .skill2')
 const p22hs3 = document.querySelector('.p22 > .skill3')
 const p22i = document.querySelector('.p22 > img')
 
+const f23 = document.querySelector('.p23')
 const posit23 = document.querySelector('.p23 > .profession')
 const p23h = document.querySelector('.p23 > .health > span')
 const p23a = document.querySelector('.p23 > .strength > span')
@@ -165,6 +171,8 @@ const li28 = document.querySelector('.p2list > .l8 > img')
 
 const round = document.querySelector('.round')
 const tselect = document.querySelector('#btn')
+const nxtrnd = document.querySelector('.nextRound')
+const rst = doucment.querySelector('.reset')
 
 const ap11 = document.querySelector('.p11 > .attack')
 const ap12 = document.querySelector('.p12 > .attack')
@@ -177,6 +185,9 @@ const p1wins = document.querySelector('.p1win > h7 > span')
 const p2wins = document.querySelector('.p2win > h7 > span')
 
 const act = document.querySelectorAll('.active')
+
+const p1w = document.querySelector('.p1win > span')
+const p2w = document.querySelector('.p2win > span')
 
 //Images for each list
 
@@ -253,6 +264,56 @@ function showteam2() {
     p2l.style.display = "block"
 }
 
+function checkWinner() {
+    if (p1s[0].health <= 0 && p1s[1].health <= 0 && p1s[2].health <= 0) {
+        p1w.innerText + 1
+    } else if (p2s[0].health <= 0 && p2s[1].health <= 0 && p2s[2].health <= 0) {
+        p2w.innerText + 1
+    }
+}
+
+function gameReset() {
+    if(checkWinner()) {
+        console.log("winner")
+    }
+}
+
+function completeReset() {
+    console.log("reset")
+}
+
+function updateHealth() {
+    if(posit11.classList.contains('active')) {
+        p11h.innerText= p1s[0].health
+    }else if(posit12.classList.contains('active')) {
+        p12h.innerText = p1s[1].health
+    }else if(posit13.classList.contains('active')) {
+        p13h.innerText = p1s[2].health
+    }else if(posit21.classList.contains('active')) {
+        p21h.innerText = p2s[0].health
+    }else if(posit22.classList.contains('active')) {
+        p22h.innerText = p2s[1].health
+    }else if(posit23.classList.contains('active')) {
+        p23h.innerText = p2s[2].health
+    }
+}
+
+function checkDeath() {
+    if(p1s[0].health <= 0) {
+        f11.style.display = "none"
+    }if(p1s[1].health <= 0) {
+        f12.style.display = "none"
+    }if(p1s[2].health <= 0) {
+        f13.style.display = "none"
+    }if(p2s[0].health <= 0) {
+        f21.style.display = "none"
+    }if(p2s[1].health <= 0) {
+        f22.style.display = "none"
+    }if(p2s[2].health <= 0) {
+        f23.style.display = "none"
+    }
+}
+
 function showp1skills() {
     p11hs1.style.display = "block"
     p11hs2.style.display = "block"
@@ -287,6 +348,9 @@ function showp2skills() {
     p23hs1.style.display = "block"
     p23hs2.style.display = "block"
     p23hs3.style.display = "block"
+    checkDeath()
+    checkWinner()
+    gameReset()
 }
 
 function hidep2skills() {
@@ -320,7 +384,6 @@ function p1attack() {
     ap21.style.display = "block"
     ap22.style.display = "block"
     ap23.style.display = "block"
-
 }
 
 function p2attack() {
@@ -330,14 +393,6 @@ function p2attack() {
     ap21.style.display = "none"
     ap22.style.display = "none"
     ap23.style.display = "none"
-}
-
-function checkWinner() {
-    if (p1s[0].health <= 0 && p1s[1].health <= 0 && p1s[2].health <= 0) {
-        p1wins.innerText += 1
-    } else if (p2s[0].health <= 0 && p2s[1].health <= 0 && p2s[2].health <= 0) {
-        p2wins.innerText += 1
-    }
 }
 
 function removeActive() {
@@ -356,454 +411,438 @@ function removeActive() {
     }
 }
 
-function updateHealth() {
-    if(posit11.classList.contains('active')) {
-        p11h.innerText= p1s[0].health
-    }else if(posit12.classList.contains('active')) {
-        p12h.innerText = p1s[1].health
-    }else if(posit13.classList.contains('active')) {
-        p13h.innerText = p1s[2].health
-    }else if(posit21.classList.contains('active')) {
-        p21h.innerText = p2s[0].health
-    }else if(posit22.classList.contains('active')) {
-        p22h.innerText = p2s[1].health
-    }else if(posit23.classList.contains('active')) {
-        p23h.innerText = p2s[2].health
-    }
-}
-
 //skills functions
 function swingMore() {
     if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
     
 }
 function rageOn() {
     if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function cleave() {
     if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function stab() {
     if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function slice() {
     if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function weakSpot() {
     if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function doubleShot() {
     if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function powerShot() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
 
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function preciseShot() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function backstab() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function throwingKnives() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function deadlyStrike() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function fireball() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function shock() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function hail() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function fireBreath() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function pyre() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function firestorm() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function preciseStrike() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function flyingKick() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function tripleUnarmedStrike() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function sleightOfHand() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function trainedEye() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function strokeOfLuck() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function sheildBash() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function strikeDown() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
 function intimidate() {
   if(posit11.classList.contains('active')) {
-        p1s[0].health -= 1
+        p1s[0].health -= 100
     }else if(posit12.classList.contains('active')) {
-        p1s[1].health -= 1
+        p1s[1].health -= 100
     }else if(posit13.classList.contains('active')) {
-        p1s[2].health -= 1
+        p1s[2].health -= 100
     }else if(posit21.classList.contains('active')) {
-        p2s[0].health -= 1
+        p2s[0].health -= 100
     }else if(posit22.classList.contains('active')) {
-        p2s[1].health -= 1
+        p2s[1].health -= 100
     }else if(posit23.classList.contains('active')) {
-        p2s[2].health -= 1
+        p2s[2].health -= 100
     }
     updateHealth()
 }
@@ -925,7 +964,6 @@ function p2skill1() {
         swingMore()
         hidep2skills()
         p1attack()
-        console.log("check")
     }else if(p2s[0].profession === "Swashbuckler") {
         stab()
         hidep2skills()
@@ -1708,8 +1746,14 @@ round.addEventListener('click', () => {
 
     p1attack()
     tselect.style.display = "none"
-    console.log(p1s)
-    console.log(p2s)
+})
+
+nxtrnd.addEventListener('click', () => {
+    gameReset()
+})
+
+rst.addEventListener('click', () => {
+    completeReset()
 })
 
 ap11.addEventListener('click', () => {
@@ -1746,79 +1790,115 @@ ap23.addEventListener('click', () => {
 p11hs1.addEventListener('click', () => {
     p1skill1()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 p11hs2.addEventListener('click', () => {
     p1skill2()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 p11hs3.addEventListener('click', () => {
     p1skill3()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 
 p12hs1.addEventListener('click', () => {
     p1skill1()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 p12hs2.addEventListener('click', () => {
     p1skill2()
     removeActive()    
+    checkDeath()
+    checkWinner()
 })
 p12hs3.addEventListener('click', () => {
     p1skill3()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 
 p13hs1.addEventListener('click', () => {
     p1skill1()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 p13hs2.addEventListener('click', () => {
     p1skill2()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 p13hs3.addEventListener('click', () => {
     p1skill3()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 
 p21hs1.addEventListener('click', () => {
     p2skill1()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 p21hs2.addEventListener('click', () => {
     p2skill2()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 p21hs3.addEventListener('click', () => {
     p2skill3()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 
 p22hs1.addEventListener('click', () => {
     p2skill1()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 p22hs2.addEventListener('click', () => {
     p2skill2()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 p22hs3.addEventListener('click', () => {
     p2skill3()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 
 p23hs1.addEventListener('click', () => {
     p2skill1()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 p23hs2.addEventListener('click', () => {
     p2skill2()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 p23hs3.addEventListener('click', () => {
     p2skill3()
     removeActive()
+    checkDeath()
+    checkWinner()
 })
 
 
@@ -1829,6 +1909,7 @@ const btn = document.getElementById('btn')
 const span = document.getElementsByClassName('close')[0]
 btn.onclick = function() {
     modal.style.display = "block"
+    showteam2()
 }
 span.onclick = function() {
     modal.style.display = "none"
