@@ -140,6 +140,9 @@ const p2b4 = document.querySelector('.b24 > img')
 const p2b5 = document.querySelector('.b25 > img')
 const p2b6 = document.querySelector('.b26 > img')
 
+const p1l = document.querySelector('.p1list')
+const p2l = document.querySelector('.p2list')
+
 const li10 = document.querySelector('.p1list > .l0 > img')
 const li11 = document.querySelector('.p1list > .l1 > img')
 const li12 = document.querySelector('.p1list > .l2 > img')
@@ -161,6 +164,7 @@ const li27 = document.querySelector('.p2list > .l7 > img')
 const li28 = document.querySelector('.p2list > .l8 > img')
 
 const round = document.querySelector('.round')
+const tselect = document.querySelector('#btn')
 
 const ap11 = document.querySelector('.p11 > .attack')
 const ap12 = document.querySelector('.p12 > .attack')
@@ -169,7 +173,10 @@ const ap21 = document.querySelector('.p21 > .attack')
 const ap22 = document.querySelector('.p22 > .attack')
 const ap23 = document.querySelector('.p23 > .attack')
 
-const act = document.getElementsByClassName('.active')
+const p1wins = document.querySelector('.p1win > h7 > span')
+const p2wins = document.querySelector('.p2win > h7 > span')
+
+const act = document.querySelectorAll('.active')
 
 //Images for each list
 
@@ -236,6 +243,16 @@ function fullteam() {
     }
 }
 
+function showteam1() {
+    p1l.style.display = "block"
+    p2l.style.display = "none"
+}
+
+function showteam2() {
+    p1l.style.display = "none"
+    p2l.style.display = "block"
+}
+
 function showp1skills() {
     p11hs1.style.display = "block"
     p11hs2.style.display = "block"
@@ -246,6 +263,18 @@ function showp1skills() {
     p13hs1.style.display = "block"
     p13hs2.style.display = "block"
     p13hs3.style.display = "block"
+}
+
+function hidep1skills() {
+    p11hs1.style.display = "none"
+    p11hs2.style.display = "none"
+    p11hs3.style.display = "none"
+    p12hs1.style.display = "none"
+    p12hs2.style.display = "none"
+    p12hs3.style.display = "none"
+    p13hs1.style.display = "none"
+    p13hs2.style.display = "none"
+    p13hs3.style.display = "none"
 }
 
 function showp2skills() {
@@ -260,6 +289,18 @@ function showp2skills() {
     p23hs3.style.display = "block"
 }
 
+function hidep2skills() {
+    p21hs1.style.display = "none"
+    p21hs2.style.display = "none"
+    p21hs3.style.display = "none"
+    p22hs1.style.display = "none"
+    p22hs2.style.display = "none"
+    p22hs3.style.display = "none"
+    p23hs1.style.display = "none"
+    p23hs2.style.display = "none"
+    p23hs3.style.display = "none"
+}
+
 function hidep1attack() {
     ap11.style.display = "none"
     ap12.style.display = "none"
@@ -272,13 +313,48 @@ function hidep2attack() {
     ap23.style.display = "none"
 }
 
-// function checkWinner() {
-//     if (p1s[0].health <= 0 && p1s[1].health <= 0 && p1s[2].health <= 0) {
-//         //add to p2 win total
-//     } else if (p2s[0].health <= 0 && p2s[1].health <= 0 && p2s[2].health <= 0) {
-//         //add to p1 win total
-//     }
-// }
+function p1attack() {
+    ap11.style.display = "none"
+    ap12.style.display = "none"
+    ap13.style.display = "none"
+    ap21.style.display = "block"
+    ap22.style.display = "block"
+    ap23.style.display = "block"
+
+}
+
+function p2attack() {
+    ap11.style.display = "block"
+    ap12.style.display = "block"
+    ap13.style.display = "block"
+    ap21.style.display = "none"
+    ap22.style.display = "none"
+    ap23.style.display = "none"
+}
+
+function checkWinner() {
+    if (p1s[0].health <= 0 && p1s[1].health <= 0 && p1s[2].health <= 0) {
+        p1wins.innerText += 1
+    } else if (p2s[0].health <= 0 && p2s[1].health <= 0 && p2s[2].health <= 0) {
+        p2wins.innerText += 1
+    }
+}
+
+function removeActive() {
+    if(posit11.classList.contains('active')) {
+        posit11.classList.remove('active')
+    }else if(posit12.classList.contains('active')) {
+        posit12.classList.remove('active')
+    }else if(posit13.classList.contains('active')) {
+        posit13.classList.remove('active')
+    }else if(posit21.classList.contains('active')) {
+        posit21.classList.remove('active')
+    }else if(posit22.classList.contains('active')) {
+        posit22.classList.remove('active')
+    }else if(posit23.classList.contains('active')) {
+        posit23.classList.remove('active')
+    }
+}
 
 function updateHealth() {
     if(posit11.classList.contains('active')) {
@@ -294,7 +370,6 @@ function updateHealth() {
     }else if(posit23.classList.contains('active')) {
         p23h.innerText = p2s[2].health
     }
-    console.log(p21h)
 }
 
 //skills functions
@@ -307,14 +382,11 @@ function swingMore() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
         p2s[2].health -= 1
     }
-    console.log(posit21)
-    console.log(p2s[0].health)
     updateHealth()
     
 }
@@ -327,7 +399,6 @@ function rageOn() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -344,7 +415,6 @@ function cleave() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -361,7 +431,6 @@ function stab() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -378,7 +447,6 @@ function slice() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -395,7 +463,6 @@ function weakSpot() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -412,7 +479,6 @@ function doubleShot() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -423,13 +489,13 @@ function doubleShot() {
 function powerShot() {
   if(posit11.classList.contains('active')) {
         p1s[0].health -= 1
+
     }else if(posit12.classList.contains('active')) {
         p1s[1].health -= 1
     }else if(posit13.classList.contains('active')) {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -446,7 +512,6 @@ function preciseShot() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -463,7 +528,6 @@ function backstab() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -480,7 +544,6 @@ function throwingKnives() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -497,7 +560,6 @@ function deadlyStrike() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -514,7 +576,6 @@ function fireball() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -531,7 +592,6 @@ function shock() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -548,7 +608,6 @@ function hail() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -565,7 +624,6 @@ function fireBreath() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -582,7 +640,6 @@ function pyre() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -599,7 +656,6 @@ function firestorm() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -616,7 +672,6 @@ function preciseStrike() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -633,7 +688,6 @@ function flyingKick() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -650,7 +704,6 @@ function tripleUnarmedStrike() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -667,7 +720,6 @@ function sleightOfHand() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -684,7 +736,6 @@ function trainedEye() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -701,7 +752,6 @@ function strokeOfLuck() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -718,7 +768,6 @@ function sheildBash() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -735,7 +784,6 @@ function strikeDown() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -752,7 +800,6 @@ function intimidate() {
         p1s[2].health -= 1
     }else if(posit21.classList.contains('active')) {
         p2s[0].health -= 1
-        console.log("check 1")
     }else if(posit22.classList.contains('active')) {
         p2s[1].health -= 1
     }else if(posit23.classList.contains('active')) {
@@ -761,162 +808,833 @@ function intimidate() {
     updateHealth()
 }
 
-function skill1() {
-    if(p1s[0] === barbarian) {
+function p1skill1() {
+    if(p1s[0].profession === "Barbarian") {
         swingMore()
-        console.log("check")
-    }else if(p1s[0] === swashbuckler) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Swashbuckler") {
         stab()
-    }else if(p1s[0] === ranger) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Ranger") {
         doubleShot()
-    }else if(p1s[0] === assassin) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Assassin") {
         backstab()
-    }else if(p1s[0] === window) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Wizard") {
         fireball()
-    }else if(p1s[0] === dragonborn) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Dragonborn") {
         heal()
-    }else if(p1s[0] === monk) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Monk") {
         preciseStrike()
-    }else if(p1s[0] === rogue) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Rogue") {
         sleightOfHand()
-    }else if(p1s[0] === knight) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Knight") {
         sheildBash()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Barbarian") {
+        swingMore()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Swashbuckler") {
+        stab()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Ranger") {
+        doubleShot()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Assassin") {
+        backstab()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Wizard") {
+        fireball()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Dragonborn") {
+        heal()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Monk") {
+        preciseStrike()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Rogue") {
+        sleightOfHand()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Knight") {
+        sheildBash()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Barbarian") {
+        swingMore()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Swashbuckler") {
+        stab()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Ranger") {
+        doubleShot()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Assassin") {
+        backstab()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Wizard") {
+        fireball()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Dragonborn") {
+        heal()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Monk") {
+        preciseStrike()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Rogue") {
+        sleightOfHand()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Knight") {
+        sheildBash()
+        hidep1skills()
+        p2attack()
     }
 }
-function skill2() {
-    if(p1s[0] === barbarian) {
+
+function p2skill1() {
+    if(p2s[0].profession === "Barbarian") {
+        swingMore()
+        hidep2skills()
+        p1attack()
+        console.log("check")
+    }else if(p2s[0].profession === "Swashbuckler") {
+        stab()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Ranger") {
+        doubleShot()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Assassin") {
+        backstab()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Wizard") {
+        fireball()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Dragonborn") {
+        heal()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Monk") {
+        preciseStrike()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Rogue") {
+        sleightOfHand()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Knight") {
+        sheildBash()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[1].profession === "Barbarian") {
+        swingMore()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[1].profession === "Swashbuckler") {
+        stab()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[1].profession === "Ranger") {
+        doubleShot()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[1].profession === "Assassin") {
+        backstab()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[1].profession === "Wizard") {
+        fireball()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[1].profession === "Dragonborn") {
+        heal()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[1].profession === "Monk") {
+        preciseStrike()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[1].profession === "Rogue") {
+        sleightOfHand()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[1].profession === "Knight") {
+        sheildBash()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[2].profession === "Barbarian") {
+        swingMore()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[2].profession === "Swashbuckler") {
+        stab()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[2].profession === "Ranger") {
+        doubleShot()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[2].profession === "Assassin") {
+        backstab()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[2].profession === "Wizard") {
+        fireball()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[2].profession === "Dragonborn") {
+        heal()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[2].profession === "Monk") {
+        preciseStrike()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[2].profession === "Rogue") {
+        sleightOfHand()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[2].profession === "Knight") {
+        sheildBash()
+        hidep2skills()
+        p1attack()
+    }
+}
+
+function p1skill2()
+ {
+    if(p1s[0].profession === "Barbarian") {
         rageOn()
-    }else if(p1s[0] === swashbuckler) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Swashbuckler") {
         slice()
-    }else if(p1s[0] === ranger) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Ranger") {
         powerShot()
-    }else if(p1s[0] === assassin) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Assassin") {
         throwingKnives()
-    }else if(p1s[0] === window) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Wizard") {
         shock()
-    }else if(p1s[0] === dragonborn) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Dragonborn") {
         boost()
-    }else if(p1s[0] === monk) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Monk") {
         flyingKick()
-    }else if(p1s[0] === rogue) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Rogue") {
         trainedEye()
-    }else if(p1s[0] === knight) {
+        hidep1skills()
+        p2attack()
+    }else if(p1s[0].profession === "Knight") {
         strikeDown()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Barbarian") {
+        rageOn()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Swashbuckler") {
+        slice()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Ranger") {
+        powerShot()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Assassin") {
+        throwingKnives()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Wizard") {
+        shock()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Dragonborn") {
+        boost()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Monk") {
+        flyingKick()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Rogue") {
+        trainedEye()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Knight") {
+        strikeDown()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Barbarian") {
+        rageOn()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Barbarian") {
+        rageOn()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Swashbuckler") {
+        slice()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Ranger") {
+        powerShot()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Assassin") {
+        throwingKnives()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Wizard") {
+        shock()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Dragonborn") {
+        boost()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Monk") {
+        flyingKick()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Rogue") {
+        trainedEye()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Knight") {
+        strikeDown()
+        hidep1skills()
+        p2attack()
     }
 }
-function skill3() {
-    if(p1s[0] === barbarian) {
+    
+function p2skill2() {
+    if(p1s[2].profession === "Barbarian") {
+        rageOn()
+        hidep1skills()
+        p2attack()
+    }else if(p2s[0].profession === "Swashbuckler") {
+        slice()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Ranger") {
+        powerShot()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Assassin") {
+        throwingKnives()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Wizard") {
+        shock()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Dragonborn") {
+        boost()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Monk") {
+        flyingKick()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Rogue") {
+        trainedEye()
+        hidep2skills()
+        p1attack()
+    }else if(p2s[0].profession === "Knight") {
+        strikeDown()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[1].profession === "Barbarian") {
+        rageOn()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Swashbuckler") {
+        slice()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Ranger") {
+        powerShot()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Assassin") {
+        throwingKnives()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Wizard") {
+        shock()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Dragonborn") {
+        boost()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Monk") {
+        flyingKick()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Rogue") {
+        trainedEye()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[1].profession === "Knight") {
+        strikeDown()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Barbarian") {
+        rageOn()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Barbarian") {
+        rageOn()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Swashbuckler") {
+        slice()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Ranger") {
+        powerShot()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Assassin") {
+        throwingKnives()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Wizard") {
+        shock()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Dragonborn") {
+        boost()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Monk") {
+        flyingKick()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Rogue") {
+        trainedEye()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Knight") {
+        strikeDown()
+        hidep1skills()
+        p2attack()
+    }else if(p1s[2].profession === "Barbarian") {
+        rageOn()
+        hidep1skills()
+        p2attack()
+    }
+}
+
+function p1skill3() {
+    if(p1s[0].profession === "Barbarian") {
         cleave()
-    }else if(p1s[0] === swashbuckler) {
+        hidep2skills()
+        p1attack()
+    }else if(p1s[0].profession === "Swashbuckler") {
         weakSpot()
-    }else if(p1s[0] === ranger) {
+        hidep2skills()
+        p1attack()
+    }else if(p1s[0].profession === "Ranger") {
         preciseShot()
-    }else if(p1s[0] === assassin) {
+        hidep2skills()
+        p1attack()
+    }else if(p1s[0].profession === "Assassin") {
         deadlyStrike()
-    }else if(p1s[0] === window) {
+        hidep2skills()
+        p1attack()
+    }else if(p1s[0].profession === "Wizard") {
         hail()
-    }else if(p1s[0] === dragonborn) {
+        hidep2skills()
+        p1attack()
+    }else if(p1s[0].profession === "Dragonborn") {
         smite()
-    }else if(p1s[0] === monk) {
+        hidep2skills()
+        p1attack()
+    }else if(p1s[0].profession === "Monk") {
         tripleUnarmedStrike()
-    }else if(p1s[0] === rogue) {
+        hidep2skills()
+        p1attack()
+    }else if(p1s[0].profession === "Rogue") {
         strokeOfLuck()
-    }else if(p1s[0] === knight) {
+        hidep2skills()
+        p1attack()
+    }else if(p1s[1].profession === "Barbarian") {
+        cleave()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[1].profession === "Swashbuckler") {
+        weakSpot()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[1].profession === "Ranger") {
+        preciseShot()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[1].profession === "Assassin") {
+        deadlyStrike()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[1].profession === "Wizard") {
+        hail()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[1].profession === "Dragonborn") {
+        smite()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[1].profession === "Monk") {
+        tripleUnarmedStrike()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[1].profession === "Rogue") {
+        strokeOfLuck()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[1].profession === "Knight") {
         intimidate()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[2].profession === "Barbarian") {
+        cleave()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[2].profession === "Swashbuckler") {
+        weakSpot()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[2].profession === "Ranger") {
+        preciseShot()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[2].profession === "Assassin") {
+        deadlyStrike()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[2].profession === "Wizard") {
+        hail()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[2].profession === "Dragonborn") {
+        smite()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[2].profession === "Monk") {
+        tripleUnarmedStrike()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[2].profession === "Rogue") {
+        strokeOfLuck()
+        hidep2skills()
+        p1attack()
+    }else if(p1s[2].profession === "Knight") {
+        intimidate()
+        hidep2skills()
+        p1attack()
     }
 }
-
-//Event Listener
-
+    
+    function p2skill3() {
+        if(p2s[0].profession === "Barbarian") {
+            cleave()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[0].profession === "Swashbuckler") {
+            weakSpot()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[0].profession === "Ranger") {
+            preciseShot()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[0].profession === "Assassin") {
+            deadlyStrike()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[0].profession === "Wizard") {
+            hail()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[0].profession === "Dragonborn") {
+            smite()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[0].profession === "Monk") {
+            tripleUnarmedStrike()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[0].profession === "Rogue") {
+            strokeOfLuck()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[0].profession === "Knight") {
+            intimidate()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[1].profession === "Barbarian") {
+            cleave()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[1].profession === "Swashbuckler") {
+            weakSpot()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[1].profession === "Ranger") {
+            preciseShot()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[1].profession === "Assassin") {
+            deadlyStrike()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[1].profession === "Wizard") {
+            hail()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[1].profession === "Dragonborn") {
+            smite()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[1].profession === "Monk") {
+            tripleUnarmedStrike()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[1].profession === "Rogue") {
+            strokeOfLuck()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[1].profession === "Knight") {
+            intimidate()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[2].profession === "Barbarian") {
+            cleave()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[2].profession === "Swashbuckler") {
+            weakSpot()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[2].profession === "Ranger") {
+            preciseShot()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[2].profession === "Assassin") {
+            deadlyStrike()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[2].profession === "Wizard") {
+            hail()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[2].profession === "Dragonborn") {
+            smite()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[2].profession === "Monk") {
+            tripleUnarmedStrike()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[2].profession === "Rogue") {
+            strokeOfLuck()
+            hidep1skills()
+            p2attack()
+        }else if(p2s[2].profession === "Knight") {
+            intimidate()
+            hidep1skills()
+            p2attack()
+        }
+    }
+    
+    //Event Listener
+    
 li10.addEventListener('click', () => {
     p1s.push(p1bar)
     delete player1[0]
+    li10.style.display = "none"
+    li20.style.display = "none"
+    showteam2()
     fullteam()
 }, {once : true})
 li11.addEventListener('click', () => {
     p1s.push(p1swa)
     delete player1[1]
+    li11.style.display = "none"
+    li21.style.display = "none"
+    showteam2()
     fullteam()
 }, {once : true})
 li12.addEventListener('click', () => {
     p1s.push(p1ran)
     delete player1[2]
+    li12.style.display = "none"
+    li22.style.display = "none"
+    showteam2()
     fullteam()
 }, {once : true})
 li13.addEventListener('click', () => {
     p1s.push(p1ass)
     delete player1[3]
+    li13.style.display = "none"
+    li23.style.display = "none"
+    showteam2()
     fullteam()
 }, {once : true})
 li14.addEventListener('click', () => {
     p1s.push(p1wiz)
     delete player1[4]
+    li14.style.display = "none"
+    li24.style.display = "none"
+    showteam2()
     fullteam()
 }, {once : true})
 li15.addEventListener('click', () => {
     p1s.push(p1hea)
     delete player1[5]
+    li15.style.display = "none"
+    li25.style.display = "none"
+    showteam2()
     fullteam()
 }, {once : true})
 li16.addEventListener('click', () => {
     p1s.push(p1mon)
     delete player1[6]
+    li16.style.display = "none"
+    li26.style.display = "none"
+    showteam2()
     fullteam()
 }, {once : true})
 li17.addEventListener('click', () => {
     p1s.push(p1rog)
     delete player1[7]
+    li17.style.display = "none"
+    li27.style.display = "none"
+    showteam2()
     fullteam()
 }, {once : true})
 li18.addEventListener('click', () => {
     p1s.push(p1kni)
     delete player1[8]
+    li18.style.display = "none"
+    li28.style.display = "none"
+    showteam2()
     fullteam()
 }, {once : true})
 
 li20.addEventListener('click', () => {
     p2s.push(p2bar)
     delete player2[0]
+    li10.style.display = "none"
+    li20.style.display = "none"
+    showteam1()
     fullteam()
 }, {once : true})
 li21.addEventListener('click', () => {
     p2s.push(p2swa)
     delete player2[1]
+    li11.style.display = "none"
+    li21.style.display = "none"
+    showteam1()
     fullteam()
 }, {once : true})
 li22.addEventListener('click', () => {
     p2s.push(p2ran)
     delete player2[2]
+    li12.style.display = "none"
+    li22.style.display = "none"
+    showteam1()
     fullteam()
 }, {once : true})
 li23.addEventListener('click', () => {
     p2s.push(p2ass)
     delete player2[3]
+    li13.style.display = "none"
+    li23.style.display = "none"
+    showteam1()
     fullteam()
 }, {once : true})
 li24.addEventListener('click', () => {
     p2s.push(p2wiz)
     delete player2[4]
+    li14.style.display = "none"
+    li24.style.display = "none"
+    showteam1()
     fullteam()
 }, {once : true})
 li25.addEventListener('click', () => {
     p2s.push(p2hea)
     delete player2[5]
+    li15.style.display = "none"
+    li25.style.display = "none"
+    showteam1()
     fullteam()
 }, {once : true})
 li26.addEventListener('click', () => {
     p2s.push(p2mon)
     delete player2[6]
+    li16.style.display = "none"
+    li26.style.display = "none"
+    showteam1()
     fullteam()
 }, {once : true})
 li27.addEventListener('click', () => {
     p2s.push(p2rog)
     delete player2[7]
+    li17.style.display = "none"
+    li27.style.display = "none"
+    showteam1()
     fullteam()
 }, {once : true})
 li28.addEventListener('click', () => {
     p2s.push(p2kni)
     delete player2[8]
+    li18.style.display = "none"
+    li28.style.display = "none"
+    showteam1()
     fullteam()
 }, {once : true})
 
@@ -988,74 +1706,119 @@ round.addEventListener('click', () => {
     p23hs3.innerText = p2s[2].skill3
     p23i.src = p2s[2].img    
 
-    const nplayer1 = player1.filter(element => {
-        return element !== '';
-    });
-
-    const nplayer2 = player2.filter(element => {
-        return element !== '';
-    });
-
-    p1b1.src = nplayer1[0].img
-    p1b2.src = nplayer1[1].img
-    p1b3.src = nplayer1[2].img
-    p1b4.src = nplayer1[3].img
-    p1b5.src = nplayer1[4].img
-    p1b6.src = nplayer1[5].img
-
-    p2b1.src = nplayer2[0].img
-    p2b2.src = nplayer2[1].img
-    p2b3.src = nplayer2[2].img
-    p2b4.src = nplayer2[3].img
-    p2b5.src = nplayer2[4].img
-    p2b6.src = nplayer2[5].img
-
-    ap21.style.display = "block"
-    ap22.style.display = "block"
-    ap23.style.display = "block"
+    p1attack()
+    tselect.style.display = "none"
+    console.log(p1s)
+    console.log(p2s)
 })
 
-ap21.addEventListener('click', () => {
-    hidep2attack()
-    showp1skills()
-    posit21.classList.add('active')
-    console.log(posit21)
-    console.log(act)
-})
-ap22.addEventListener('click', () => {
-    hidep2attack()
-    showp1skills()
-    ap22.classList.add('active')
-})
-ap23.addEventListener('click', () => {
-    hidep2attack()
-    showp1skills()
-    ap23.classList.add('active')
-})
 ap11.addEventListener('click', () => {
     hidep1attack()
     showp2skills()
-    ap11.classList.add('active')
+    posit11.classList.add('active')
 })
 ap12.addEventListener('click', () => {
     hidep1attack()
     showp2skills()
-    ap12.classList.add('active')
+    posit12.classList.add('active')
 })
 ap13.addEventListener('click', () => {
     hidep1attack()
     showp2skills()
-    ap13.classList.add('active')
+    posit13.classList.add('active')
+})
+ap21.addEventListener('click', () => {
+    hidep2attack()
+    showp1skills()
+    posit21.classList.add('active')
+})
+ap22.addEventListener('click', () => {
+    hidep2attack()
+    showp1skills()
+    posit22.classList.add('active')
+})
+ap23.addEventListener('click', () => {
+    hidep2attack()
+    showp1skills()
+    posit23.classList.add('active')
 })
 
 p11hs1.addEventListener('click', () => {
-    skill1()
+    p1skill1()
+    removeActive()
 })
 p11hs2.addEventListener('click', () => {
-    skill2()
+    p1skill2()
+    removeActive()
 })
 p11hs3.addEventListener('click', () => {
-    skill3()
+    p1skill3()
+    removeActive()
+})
+
+p12hs1.addEventListener('click', () => {
+    p1skill1()
+    removeActive()
+})
+p12hs2.addEventListener('click', () => {
+    p1skill2()
+    removeActive()    
+})
+p12hs3.addEventListener('click', () => {
+    p1skill3()
+    removeActive()
+})
+
+p13hs1.addEventListener('click', () => {
+    p1skill1()
+    removeActive()
+})
+p13hs2.addEventListener('click', () => {
+    p1skill2()
+    removeActive()
+})
+p13hs3.addEventListener('click', () => {
+    p1skill3()
+    removeActive()
+})
+
+p21hs1.addEventListener('click', () => {
+    p2skill1()
+    removeActive()
+})
+p21hs2.addEventListener('click', () => {
+    p2skill2()
+    removeActive()
+})
+p21hs3.addEventListener('click', () => {
+    p2skill3()
+    removeActive()
+})
+
+p22hs1.addEventListener('click', () => {
+    p2skill1()
+    removeActive()
+})
+p22hs2.addEventListener('click', () => {
+    p2skill2()
+    removeActive()
+})
+p22hs3.addEventListener('click', () => {
+    p2skill3()
+    removeActive()
+})
+
+p23hs1.addEventListener('click', () => {
+    p2skill1()
+    removeActive()
+})
+p23hs2.addEventListener('click', () => {
+    p2skill2()
+    removeActive()
+})
+p23hs3.addEventListener('click', () => {
+    p2skill3()
+    removeActive()
 })
 
 
