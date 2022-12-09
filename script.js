@@ -172,7 +172,7 @@ const li28 = document.querySelector('.p2list > .l8 > img')
 const round = document.querySelector('.round')
 const tselect = document.querySelector('#btn')
 const nxtrnd = document.querySelector('.nextRound')
-const rst = doucment.querySelector('.reset')
+const rst = document.querySelector('.reset')
 
 const ap11 = document.querySelector('.p11 > .attack')
 const ap12 = document.querySelector('.p12 > .attack')
@@ -186,8 +186,13 @@ const p2wins = document.querySelector('.p2win > h7 > span')
 
 const act = document.querySelectorAll('.active')
 
-const p1w = document.querySelector('.p1win > span')
-const p2w = document.querySelector('.p2win > span')
+const p1wm = document.querySelector('.p1win > span')
+const p2wm = document.querySelector('.p2win > span')
+
+let p1w = 0
+let p2w = 0
+
+
 
 //Images for each list
 
@@ -239,7 +244,7 @@ ap21.style.display = "none"
 ap22.style.display = "none"
 ap23.style.display = "none"
 
-
+nxtrnd.style.display = "none"
 
 //functions
 function fullteam() {
@@ -251,6 +256,7 @@ function fullteam() {
     }
     if (p1s.length === 3 && p2s.length === 3) {
         document.querySelector('.close').style.display = "none"
+        round.style.display = "block"
     }
 }
 
@@ -266,15 +272,26 @@ function showteam2() {
 
 function checkWinner() {
     if (p1s[0].health <= 0 && p1s[1].health <= 0 && p1s[2].health <= 0) {
-        p1w.innerText + 1
+        p1w = p1w + 1
+        p1wm.innerText = p1w
+        hidep1attack()
+        hidep2attack()
+        hidep1skills()
+        hidep2skills()
+        nxtrnd.style.display = "block"
     } else if (p2s[0].health <= 0 && p2s[1].health <= 0 && p2s[2].health <= 0) {
-        p2w.innerText + 1
+        p2w = p2w + 1
+        p2wm.innerText = p2w
+        hidep1attack()
+        hidep2attack()
+        hidep1skills()
+        hidep2skills()
     }
 }
 
 function gameReset() {
     if(checkWinner()) {
-        console.log("winner")
+        
     }
 }
 
@@ -1910,12 +1927,13 @@ const span = document.getElementsByClassName('close')[0]
 btn.onclick = function() {
     modal.style.display = "block"
     showteam2()
+    round.style.display = "none"
 }
 span.onclick = function() {
     modal.style.display = "none"
 }
 window.onclick = function(event) {
     if (event.target === modal) {
-        modal.style.display = "none"
+        modal.style.display = "block"
     }
 }

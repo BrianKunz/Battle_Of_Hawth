@@ -1,3 +1,9 @@
+html {
+  background: url("https://i.imgur.com/kIKARWC.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -10,39 +16,143 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+}
   
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
+/* Modal Content/Box */
+.modal-content {
+    display: flex;
+    background-color: darkcyan;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button */
-  .close {
+    color: black;
+}
+
+/* The Close Button */
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
+}
 
-  li {
+.p1list {
+    display: flex;
+    justify-content: center;
+}
+
+li {
     list-style-type: none;
     padding: 0;
     margin: 0;
-  }
+}
 
-  img {
+img {
     height: 50px;
     width: 50px;
-  }
+}
+
+#player1 {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    margin-top: 3%;
+    color: coral;
+    text-shadow: -1px 1px 0 black;
+}
+
+#player2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    font-size: 1.5rem;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2.5rem;
+}
+
+.titlescore {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    margin-top: 5%;
+    color: black;
+}
+.ptitle {
+    display: flex;
+    flex-direction: column;
+    margin-left: 48%;
+}
+.p11 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+}
+.p12 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+}
+.p13 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+}
+.p21 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+}
+.p22 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+}
+.p23 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+}
+
+h5 {
+    margin: 10px;
+}
+
+#btn {
+    display: flex;
+    margin-left: 43.5%;
+    font-size: 1.5rem;
+}
+
+.nextRound {
+    display: flex;
+    margin-left: 46.5%;
+}
+
+.reset {
+    display: flex;
+    margin-left: 46.5%;
+    margin-top: 3%;
+}
+
+.round {
+    display: flex;
+    margin-left: 46.5%;
+}
