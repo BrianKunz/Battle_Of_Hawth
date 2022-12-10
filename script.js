@@ -189,10 +189,16 @@ const act = document.querySelectorAll('.active')
 const p1wm = document.querySelector('.p1win > span')
 const p2wm = document.querySelector('.p2win > span')
 
-let p1w = 0
-let p2w = 0
+const storedp1w = localStorage.getItem('sp1w')
+const storedp2w = localStorage.getItem('sp2w')
 
+if(p1wm) {
+    p1wm.textContent = storedp1w
+}
 
+if(p2wm) {
+    p2wm.textContent = storedp2w
+}
 
 //Images for each list
 
@@ -272,31 +278,53 @@ function showteam2() {
 
 function checkWinner() {
     if (p1s[0].health <= 0 && p1s[1].health <= 0 && p1s[2].health <= 0) {
-        p1w = p1w + 1
-        p1wm.innerText = p1w
-        hidep1attack()
-        hidep2attack()
-        hidep1skills()
-        hidep2skills()
-        nxtrnd.style.display = "block"
-    } else if (p2s[0].health <= 0 && p2s[1].health <= 0 && p2s[2].health <= 0) {
-        p2w = p2w + 1
-        p2wm.innerText = p2w
-        hidep1attack()
-        hidep2attack()
-        hidep1skills()
-        hidep2skills()
+        if(p2wm.innerText === "") {
+            p2wm.innerText = p2wm.innerText + 1
+            hidep1attack()
+            hidep2attack()
+            hidep1skills()
+            hidep2skills()
+            nxtrnd.style.display = "block"
+        }else if(p2wm.innerText === "1") {
+            p2wm.innerText = p2wm.innerText + 2
+            hidep1attack()
+            hidep2attack()
+            hidep1skills()
+            hidep2skills()
+            nxtrnd.style.display = "block"
+            }
+        }
+    if (p2s[0].health <= 0 && p2s[1].health <= 0 && p2s[2].health <= 0) {
+        if(p1wm.innerText === "") {
+            p1wm.innerText = 1
+            hidep1attack()
+            hidep2attack()
+            hidep1skills()
+            hidep2skills()
+            nxtrnd.style.display = "block"
+        }else if(p1wm.innerText === "1") {
+            p1wm.innerText = 2
+            hidep1attack()
+            hidep2attack()
+            hidep1skills()
+            hidep2skills()
+            nxtrnd.style.display = "block"
+        }
     }
+}
+function saveWins () {
+    localStorage.setItem('sp1w', p1wm.textContent)
+    localStorage.setItem('sp2w', p2wm.textContent)
 }
 
 function gameReset() {
-    if(checkWinner()) {
-        
-    }
+    saveWins()
+    window.location.reload()
 }
 
 function completeReset() {
-    console.log("reset")
+    localStorage.clear()
+    window.location.reload()
 }
 
 function updateHealth() {
@@ -367,7 +395,6 @@ function showp2skills() {
     p23hs3.style.display = "block"
     checkDeath()
     checkWinner()
-    gameReset()
 }
 
 function hidep2skills() {
